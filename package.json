@@ -1,0 +1,35 @@
+{
+  "name": "base-astro-tw-plot",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^6.5.10",
+    "@observablehq/plot": "^0.6.17",
+    "@tailwindcss/vite": "^4.1.13",
+    "accessible-astro-components": "^5.0.0",
+    "astro": "^5.13.5",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7"
+  },
+  "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/zNKu7jDa)\r - URL site WEB : https://calm-crostata-d1e242.netlify.app/\r - URL Notebook Observable : https://observablehq.com/d/e48c473af082a720\r - Nom : Menoux\r - Prénom : Bryan",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMI-NFC-2024/tp3-dev-pracht-Bryan-Menoux.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MMI-NFC-2024/tp3-dev-pracht-Bryan-Menoux/issues"
+  },
+  "homepage": "https://github.com/MMI-NFC-2024/tp3-dev-pracht-Bryan-Menoux#readme"
+}

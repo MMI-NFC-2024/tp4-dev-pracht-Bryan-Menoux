@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <a
+    href="/"
+    class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow fixed top-6 left-6 z-10"
+    >← Retour à l'accueil</a
+  >
+  <h1
+    class="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12 select-none mt-16"
+  >
+    Menu des espèces
+  </h1>
+
+  <div class="mb-6 text-center">
+    <label for="species" class="block mb-3 text-lg font-semibold text-gray-800">
+      Choisissez une espèce
+    </label>
+    <select
+      id="species"
+      class="block mx-auto appearance-none p-3 pl-6 pr-12 border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg font-medium text-gray-700 rounded-full transition duration-200 hover:border-blue-400 cursor-pointer"
+    >
+      <option selected disabled value="">Sélectionnez une espèce</option>
+      <option value="Adelie">Adelie</option>
+      <option value="Gentoo">Gentoo</option>
+      <option value="Chinstrap">Chinstrap</option>
+    </select>
+  </div>
+
+  <div class="mt-12 max-w-5xl mx-auto">
+    <iframe
+      id="speciesFrame"
+      name="speciesFrame"
+      src="/species/Adelie"
+      class="w-full border-0 rounded-lg shadow-lg overflow-hidden"
+      scrolling="no"
+      height="700"></iframe>
+  </div>
+</Layout>
+<script>
+  document.querySelector("#species")?.addEventListener("change", (evt) => {
+    const value = (evt.target as HTMLSelectElement).value;
+    (document.querySelector("#speciesFrame") as HTMLIFrameElement).src =
+      "/species/" + value;
+  });
+</script>
+<style>
+  #species {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.25rem;
+  }
+  #species option {
+    background-color: #f9fafb;
+    color: #1f2937;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  #species option:checked {
+    background-color: #2563eb;
+    color: white;
+  }
+</style>

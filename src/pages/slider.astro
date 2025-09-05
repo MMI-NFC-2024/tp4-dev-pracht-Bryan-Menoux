@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+---
+
+<Layout>
+  <a
+    href="/"
+    class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow fixed top-6 left-6 z-10"
+    >← Retour à l'accueil</a
+  >
+
+  <h1
+    class="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12 select-none mt-16"
+  >
+    Mes Pingouins
+  </h1>
+
+  <div
+    class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg border border-gray-200 p-8"
+  >
+    <div class="mb-6 text-center">
+      <label
+        for="species"
+        class="block mb-3 text-lg font-semibold text-gray-800"
+      >
+        Choisissez une espèce
+      </label>
+      <select
+        id="species"
+        class="block mx-auto appearance-none p-3 pl-6 pr-12 border border-gray-300 bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-lg font-medium text-gray-700 rounded-full transition duration-200 hover:border-blue-400 cursor-pointer"
+      >
+        <option selected disabled value="">Sélectionnez une espèce</option>
+        <option value="Adelie">Adelie</option>
+        <option value="Gentoo">Gentoo</option>
+        <option value="Chinstrap">Chinstrap</option>
+      </select>
+    </div>
+
+    <div class="relative w-full overflow-x-scroll scroll-smooth">
+      <div class="flex transition-transform duration-500 ease-in-out space-x-6">
+        <div class="w-full shrink-0" id="Adelie">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            Pingouins Adelie
+          </h2>
+          <GraphicSpecies species="Adelie" />
+        </div>
+
+        <div class="w-full shrink-0" id="Gentoo">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            Pingouins Gentoo
+          </h2>
+          <GraphicSpecies species="Gentoo" />
+        </div>
+
+        <div class="w-full shrink-0" id="Chinstrap">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">
+            Pingouins Chinstrap
+          </h2>
+          <GraphicSpecies species="Chinstrap" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  document.querySelector("#species")?.addEventListener("change", (evt) => {
+    const value = (evt.target as HTMLSelectElement).value;
+    location.hash = value;
+  });
+</script>
+<style>
+  #species {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.25rem;
+  }
+  #species option {
+    background-color: #f9fafb;
+    color: #1f2937;
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  #species option:checked {
+    background-color: #2563eb;
+    color: white;
+  }
+</style>

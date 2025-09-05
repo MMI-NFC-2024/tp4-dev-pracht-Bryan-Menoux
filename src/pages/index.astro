@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PlotFigure from "../components/PlotFigure.astro";
+import * as Plot from "@observablehq/plot";
+const delta = (d: any) => d.temp_max - d.temp_min;
+---
+
+<Layout class="bg-gray-50 min-h-screen py-12 px-6 md:px-12">
+  <h1
+    class="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12 select-none mt-16"
+  >
+    TP N°4
+  </h1>
+  <nav>
+    <ul class="flex flex-col md:flex-row gap-6 justify-center">
+      <li>
+        <a
+          href="/species"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Accéder aux espèces</a
+        >
+      </li>
+      <li>
+        <a
+          href="test-iframe"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Accéder aux espèces dans l'iframe</a
+        >
+      </li>
+      <li>
+        <a
+          href="slider"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Accéder aux espèces dans le carousel</a
+        >
+      </li>
+      <li>
+        <a
+          href="accessible-astro"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Accéder aux espèces avec accessible</a
+        >
+      </li>
+    </ul>
+  </nav>
+</Layout>

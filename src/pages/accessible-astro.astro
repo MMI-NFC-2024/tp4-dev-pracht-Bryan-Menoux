@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GraphicSpecies from "../components/GraphicSpecies.astro";
+import {
+  Tabs,
+  TabsList,
+  TabsTab,
+  TabsPanel,
+} from "accessible-astro-components";
+---
+
+<Layout>
+  <a
+    href="/"
+    class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow fixed top-6 left-6 z-10"
+    >← Retour a l'accueil</a
+  >
+  <h1
+    class="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12 select-none mt-16"
+  >
+    Mes Pingouins
+  </h1>
+
+  <Tabs>
+    <TabsList class="gap-4 mb-8 mx-[10dvw]">
+      <TabsTab
+        id="tab-adelie"
+        controls="panel-adelie"
+        selected
+        class="!px-4 !py-3 !rounded-md !border !border-gray-300 !bg-white !text-gray-700 !font-medium !text-lg !shadow hover:!bg-gray-100 aria-selected:!bg-blue-600 aria-selected:!text-white aria-selected:!border-blue-600"
+      >
+        Adelie
+      </TabsTab>
+
+      <TabsTab
+        id="tab-gentoo"
+        controls="panel-gentoo"
+        class="!px-4 !py-3 !rounded-md !border !border-gray-300 !bg-white !text-gray-700 !font-medium !text-lg !shadow hover:!bg-gray-100 aria-selected:!bg-blue-600 aria-selected:!text-white aria-selected:!border-blue-600"
+      >
+        Gentoo
+      </TabsTab>
+
+      <TabsTab
+        id="tab-chinstrap"
+        controls="panel-chinstrap"
+        class="!px-4 !py-3 !rounded-md !border !border-gray-300 !bg-white !text-gray-700 !font-medium !text-lg !shadow hover:!bg-gray-100 aria-selected:!bg-blue-600 aria-selected:!text-white aria-selected:!border-blue-600"
+      >
+        Chinstrap
+      </TabsTab>
+    </TabsList>
+
+    <TabsPanel
+      id="panel-adelie"
+      labelledby="tab-adelie"
+      selected
+      class="!p-6 !mt-6 !border !border-gray-300 !rounded-md !bg-white !shadow !max-w-[80dvw] !mx-auto !items-center"
+    >
+      <GraphicSpecies species="Adelie" />
+    </TabsPanel>
+
+    <TabsPanel
+      id="panel-gentoo"
+      labelledby="tab-gentoo"
+      class="!p-6 !mt-6 !border !border-gray-300 !rounded-md !bg-white !shadow !max-w-[80dvw] !mx-auto !items-center"
+    >
+      <GraphicSpecies species="Gentoo" />
+    </TabsPanel>
+
+    <TabsPanel
+      id="panel-chinstrap"
+      labelledby="tab-chinstrap"
+      class="!p-6 !mt-6 !border !border-gray-300 !rounded-md !bg-white !shadow !max-w-[80dvw] !mx-auto !items-center"
+    >
+      <GraphicSpecies species="Chinstrap" />
+    </TabsPanel>
+  </Tabs>
+</Layout>
