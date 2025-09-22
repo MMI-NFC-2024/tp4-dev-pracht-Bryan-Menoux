@@ -4,13 +4,17 @@ import PlotFigure from "../components/PlotFigure.astro";
 import * as Plot from "@observablehq/plot";
 
 const species = Astro.props.species;
-const penguinsFiltered = penguins.filter((p) => p.species === species);
+const penguinsFiltered = Array.isArray(species)
+  ? penguins.filter((p) => species.includes(p.species))
+  : penguins.filter((p) => p.species === species);
+
+const title = Array.isArray(species)
+  ? `${species.join(", ")} Penguins`
+  : `${species} Penguins`;
 ---
 
-<div
-  class="flex flex-col items-center my-16 bg-red-100 rounded-2xl p-6 shadow-lg border-2 border-red-300 max-w-[80dvw] mx-auto"
->
-  <h1>{species} Penguins</h1>
+<div class="flex flex-col items-center my-16 max-w-[80dvw] mx-auto">
+  <h1>{title}</h1>
   <PlotFigure
     options={{
       marks: [
@@ -23,7 +27,10 @@ const penguinsFiltered = penguins.filter((p) => p.species === species);
     }}
   />
   <p class="mt-4 text-center text-gray-600">
-    Ce tableau comporte les données de {penguinsFiltered.length} pingouins de l'espèce
-    {species}.
+    Ce tableau comporte les données de {penguinsFiltered.length} pingouins{
+      Array.isArray(species)
+        ? ` des espèces ${species.join(", ")}`
+        : ` de l'espèce ${species}`
+    }.
   </p>
 </div>

@@ -11,34 +11,71 @@ const delta = (d: any) => d.temp_max - d.temp_min;
   >
     TP N°4
   </h1>
-  <nav>
+  <nav class="flex flex-col gap-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mt-6 text-center">
+      Pages de datavisualisation des pingouins
+    </h2>
     <ul class="flex flex-col md:flex-row gap-6 justify-center">
       <li>
         <a
-          href="/species"
+          href="/simple"
           class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
-          >Accéder aux espèces</a
+          >Simple</a
         >
       </li>
       <li>
         <a
-          href="test-iframe"
+          href="/simple-penguin"
           class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
-          >Accéder aux espèces dans l'iframe</a
+          >Simple penguin</a
         >
       </li>
       <li>
         <a
-          href="slider"
+          href="/penguin-filtred"
           class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
-          >Accéder aux espèces dans le carousel</a
+          >Penguin filtred</a
         >
       </li>
       <li>
         <a
-          href="accessible-astro"
+          href="/penguin-multi-filtred"
           class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
-          >Accéder aux espèces avec accessible</a
+          >Penguin multi filtred</a
+        >
+      </li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold text-gray-800 mt-6 text-center">
+      Pages de datavisualisation des Olympiens
+    </h2>
+    <ul class="flex flex-col md:flex-row gap-6 justify-center">
+      <li>
+        <a
+          href="/simple"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Simple</a
+        >
+      </li>
+      <li>
+        <a
+          href="/simple-penguin"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Simple penguin</a
+        >
+      </li>
+      <li>
+        <a
+          href="/penguin-filtred"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Penguin filtred</a
+        >
+      </li>
+      <li>
+        <a
+          href="/penguin-multi-filtred"
+          class="text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md shadow"
+          >Penguin multi filtred</a
         >
       </li>
     </ul>
