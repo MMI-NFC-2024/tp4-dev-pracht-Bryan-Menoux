@@ -13,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
 
       <div class="bg-white rounded-lg shadow-lg p-6">
         <h2 class="text-2xl font-semibold text-gray-700 mb-4">
-          Données des athlètes
+          Données des Voitures
         </h2>
         <div
           id="myplot"
@@ -26,12 +26,12 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 <script>
   import * as Plot from "@observablehq/plot";
-  import olympians from "../assets/olympians.json";
+  import cars from "../assets/cars.json";
 
-  const plot = Plot.dot(olympians, {
-    x: "height",
-    y: "weight",
-    stroke: "sport",
+  const plot = Plot.dot(cars, {
+    y: "0-60 mph (s)",
+    x: "power (hp)",
+    stroke: "cylinders",
   }).plot();
   const div = document.querySelector("#myplot");
   div?.append(plot);
