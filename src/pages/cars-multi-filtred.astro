@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
+    <div class="max-w-4xl mx-auto">
+      <header class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          Visualisation de données
+        </h1>
+      </header>
+
+      <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">
+          Données des pingouins
+        </h2>
+
+        <div class="mb-6 p-4 bg-gray-50 rounded-lg border">
+          <h3 class="text-lg font-medium text-gray-700 mb-4">
+            Filtres de données
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label
+                for="weight"
+                class="block text-sm font-medium text-gray-600 mb-2"
+              >
+                Poids
+              </label>
+              <select
+                name="weight"
+                id="weight"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-gray-700 font-medium cursor-pointer hover:border-gray-400"
+              >
+                <option value="">Tous les poids</option>
+                <option value="2000">Moins de 2000 lbs</option>
+                <option value="3000">2000 - 3000 lbs</option>
+                <option value="4000">3000 - 4000 lbs</option>
+                <option value="4001">Plus de 4000 lbs</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="economy"
+                class="block text-sm font-medium text-gray-600 mb-2"
+              >
+                Économie de carburant
+              </label>
+              <select
+                name="economy"
+                id="economy"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-gray-700 font-medium cursor-pointer hover:border-gray-400"
+              >
+                <option value="">Tous les niveaux</option>
+                <option value="low">Bas</option>
+                <option value="medium">Moyen</option>
+                <option value="high">Élevé</option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="cylinders"
+                class="block text-sm font-medium text-gray-600 mb-2"
+              >
+                Cylindres
+              </label>
+              <select
+                name="cylinders"
+                id="cylinders"
+                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-gray-700 font-medium cursor-pointer hover:border-gray-400"
+              >
+                <option value="">Tous les cylindres</option>
+                <option value="3">3 cylindres</option>
+                <option value="4">4 cylindres</option>
+                <option value="5">5 cylindres</option>
+                <option value="6">6 cylindres</option>
+                <option value="8">8 cylindres</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="myplot"
+          class="flex justify-center items-center min-h-[400px] bg-gray-50 rounded border-2 border-dashed border-gray-300"
+        >
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import * as Plot from "@observablehq/plot";
+  import cars from "../assets/cars.json";
+
+  const selectWeight = document.getElementById(
+    "weight"
+  ) as HTMLSelectElement | null;
+  const selectEconomy = document.getElementById(
+    "economy"
+  ) as HTMLSelectElement | null;
+  const selectCylinders = document.getElementById(
+    "cylinders"
+  ) as HTMLSelectElement | null;
+
+  function renderPlot() {
+    const weightStr = selectWeight?.value;
+    const weight = weightStr ? Number(weightStr) : null;
+    const economyStr = selectEconomy?.value;
+    const economy = economyStr ? economyStr : null;
+    const cylindersStr = selectCylinders?.value;
+    const cylinders = cylindersStr ? Number(cylindersStr) : null;
+
+    const plotDiv = document.getElementById("myplot");
+
+    if (plotDiv) plotDiv.innerHTML = "";
+    const plot = Plot.plot({
+      marks: [
+        Plot.dot(cars, {
+          y: "0-60 mph (s)",
+          x: "power (hp)",
+          stroke: "cylinders",
+          filter: (d) => {
+            // Filter by weight
+            let weightOk = true;
+            if (weight) {
+              const carWeight = d["weight (lb)"];
+              if (weight < 4000) {
+                weightOk = carWeight >= weight - 1000 && carWeight < weight;
+              } else {
+                weightOk = carWeight >= 4000;
+              }
+            }
+            // Filter by economy
+            let economyOk = true;
+            if (economy) {
+              if (economy === "low") economyOk = d["economy (mpg)"] < 20;
+              else if (economy === "medium")
+                economyOk =
+                  d["economy (mpg)"] >= 20 && d["economy (mpg)"] <= 35;
+              else if (economy === "high") economyOk = d["economy (mpg)"] > 35;
+            }
+            // Filter by cylinders
+            let cylindersOk = true;
+            if (cylinders) {
+              cylindersOk = d.cylinders === cylinders;
+            }
+            return weightOk && economyOk && cylindersOk;
+          },
+        }),
+      ],
+    });
+    if (plotDiv) plotDiv.appendChild(plot);
+  }
+
+  selectWeight?.addEventListener("change", renderPlot);
+  selectEconomy?.addEventListener("change", renderPlot);
+  selectCylinders?.addEventListener("change", renderPlot);
+  renderPlot();
+</script>
